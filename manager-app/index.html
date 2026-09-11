@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电影清单</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: sans-serif; max-width: 720px; margin: 24px auto; padding: 0 16px; }
+    form { display: flex; flex-wrap: wrap; gap: 8px; }
+    form input { flex: 1 1 120px; padding: 6px 8px; }
+    .tip { color: #c00; font-size: 14px; min-height: 20px; margin: 8px 0; }
+    .toolbar { margin: 12px 0; }
+    #search-input { width: 240px; padding: 6px 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; }
+    th { background: #f5f5f5; }
+    .empty { text-align: center; color: #999; }
+    .edit { color: #06c; cursor: pointer; margin-right: 8px; }
+    .del { color: #c00; cursor: pointer; }
+    #cancel-edit-btn { display: none; }
+  </style>
+</head>
+<body>
+  <h1>电影清单</h1>
+  <form id="movie-form">
+    <input type="text" id="title-input" placeholder="片名">
+    <input type="text" id="director-input" placeholder="导演">
+    <input type="text" id="genre-input" placeholder="类型">
+    <input type="number" id="rating-input" placeholder="评分 0~10" step="0.1" min="0" max="10">
+    <button type="submit" id="submit-btn">添加</button>
+    <button type="button" id="cancel-edit-btn">取消编辑</button>
+  </form>
+  <p class="tip" id="tip"></p>
+  <div class="toolbar">
+    <input type="text" id="search-input" placeholder="按片名 / 导演搜索...">
+  </div>
+  <table>
+    <thead>
+      <tr><th>片名</th><th>导演</th><th>类型</th><th>评分</th><th>操作</th></tr>
+    </thead>
+    <tbody id="movie-tbody"></tbody>
+  </table>
+  <script src="app.js"></script>
+</body>
+</html>
