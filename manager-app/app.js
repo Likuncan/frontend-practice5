@@ -10,7 +10,9 @@ const tip = document.querySelector('#tip');
 const searchInput = document.querySelector('#search-input');
 const tbody = document.querySelector('#movie-tbody');
 
-let movies = [];
+// 恢复
+let movies = JSON.parse(localStorage.getItem('movies') || '[]');
+const save = () => localStorage.setItem('movies', JSON.stringify(movies));
 let editingId = null; // 正在编辑的电影 id，null 表示新增模式
 
 // 列表由数组动态渲染：先改数组，再调 render
@@ -77,6 +79,7 @@ const exitEdit = () => {
 
 const removeMovie = (id) => {
   movies = movies.filter(m => m.id !== id);
+  save();
   if (editingId === id) exitEdit();
   render();
 };
@@ -107,6 +110,7 @@ form.addEventListener('submit', (e) => {
     if (movie) Object.assign(movie, { title, director, genre, rating });
     exitEdit();
   }
+  save();
   tip.textContent = '';
   form.reset();
   render();
